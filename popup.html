@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --fg: #e2e8f0;
+      --muted: #94a3b8;
+      --line: #1e293b;
+      --btn: #0f766e;
+    }
+    body {
+      margin: 0;
+      font: 13px/1.45 system-ui, sans-serif;
+      color: var(--fg);
+      background: var(--bg);
+      width: 340px;
+    }
+    main { padding: 14px 14px 12px; }
+    h1 { font-size: 15px; margin: 0 0 6px; font-weight: 650; }
+    h2 { font-size: 12px; margin: 12px 0 6px; font-weight: 650; color: var(--muted); }
+    p { margin: 0 0 10px; color: var(--muted); }
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-weight: 650;
+      cursor: pointer;
+      color: #ecfeff;
+      background: var(--btn);
+    }
+    dl {
+      margin: 12px 0 0;
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 6px 8px;
+    }
+    dt { color: var(--muted); }
+    dd { margin: 0; word-break: break-word; }
+    #error {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #3f1d24;
+      color: #fca5a5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    ul { margin: 0; padding-left: 18px; max-height: 120px; overflow: auto; }
+    li { margin: 0 0 4px; word-break: break-all; }
+    .foot { margin: 12px 0 0; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>ЛК ЕСП → CRM</h1>
+    <p>Листайте кабинет. Сюда попадает JSON, который страница уже получила.</p>
+    <button type="button" id="settings">Настройки домена и приёма</button>
+    <dl>
+      <dt>Домен</dt>
+      <dd id="host">…</dd>
+      <dt>Приём</dt>
+      <dd id="crm">…</dd>
+      <dt>Очередь</dt>
+      <dd id="queue">…</dd>
+      <dt>Последняя отправка</dt>
+      <dd id="sent">…</dd>
+      <dt>Последний снимок</dt>
+      <dd id="status">…</dd>
+    </dl>
+    <div id="error" hidden></div>
+    <div id="unknown" hidden>
+      <h2>Другие JSON на экране — здесь только путь</h2>
+      <ul id="paths"></ul>
+    </div>
+    <p class="foot" id="foot"></p>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

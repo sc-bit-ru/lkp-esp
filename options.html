@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>Настройки — ЛК ЕСП → CRM</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --fg: #e2e8f0;
+      --muted: #94a3b8;
+      --line: #1e293b;
+      --btn: #0f766e;
+      --err: #fca5a5;
+      --ok: #34d399;
+    }
+    body {
+      margin: 0;
+      font: 15px/1.5 system-ui, sans-serif;
+      color: var(--fg);
+      background: var(--bg);
+    }
+    main { max-width: 640px; margin: 0 auto; padding: 28px 20px 40px; }
+    h1 { font-size: 22px; margin: 0 0 8px; }
+    p { margin: 0 0 16px; color: var(--muted); }
+    label { display: block; margin: 14px 0 4px; font-weight: 650; }
+    .hint { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: var(--line);
+      color: var(--fg);
+      font: inherit;
+    }
+    .row { display: flex; gap: 8px; margin-top: 18px; }
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-weight: 650;
+      cursor: pointer;
+      color: #ecfeff;
+      background: var(--btn);
+    }
+    button.secondary { background: #334155; }
+    button:disabled { opacity: 0.55; cursor: default; }
+    #msg {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--line);
+      white-space: pre-wrap;
+    }
+    #msg.ok { color: var(--ok); }
+    #msg.err { color: var(--err); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Настройки</h1>
+    <p>Расширение смотрит только тот домен, который вы здесь сохраните, и шлёт JSON только на указанный приём. Само в кабинет оно не ходит.</p>
+    <label for="host">Домен кабинета</label>
+    <p class="hint">Имя хоста, без пути. Пример для ЛК ЕСП: lkp.ao-esp.ru</p>
+    <input id="host" type="text" autocomplete="off" spellcheck="false" placeholder="lkp.ao-esp.ru" />
+    <label for="crm">Адрес приёма</label>
+    <p class="hint">https-адрес сервера, который принимает снимки. Его даёт администратор приёма.</p>
+    <input id="crm" type="url" autocomplete="off" spellcheck="false" placeholder="https://receiver.example" />
+    <label for="token">Токен приёма</label>
+    <p class="hint">Его выдаёт администратор приёма. В поле можно вставить строку вместе с «Bearer».</p>
+    <input id="token" type="password" autocomplete="off" spellcheck="false" placeholder="Вставьте токен, чтобы заменить сохранённый" />
+    <div class="row">
+      <button type="button" id="save">Сохранить и разрешить доступ</button>
+      <button type="button" id="forget" class="secondary">Удалить токен</button>
+    </div>
+    <div id="msg">Заполните домен и адрес приёма, затем сохраните. Chrome спросит доступ только к этим двум адресам.</div>
+  </main>
+  <script src="lib.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
